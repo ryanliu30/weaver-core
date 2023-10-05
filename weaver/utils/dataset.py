@@ -154,7 +154,7 @@ class _SimpleIter(object):
         self.restart()
 
     def restart(self):
-        print('=== Restarting DataIter %s, seed=%s ===' % (self._name, self._seed))
+        # print('=== Restarting DataIter %s, seed=%s ===' % (self._name, self._seed))
         # re-shuffle filelist and load range if for training
         filelist = self.worker_filelist.copy()
         if self._sampler_options['shuffle']:
@@ -352,7 +352,7 @@ class SimpleIterDataset(torch.utils.data.IterableDataset):
                 _logger.info(
                     'Found file %s w/ auto-generated preprocessing information, will use that instead!' %
                     data_config_file)
-            self._data_config = DataConfig.load(data_config_file, load_observers=False, extra_selection=extra_selection)
+            self._data_config = DataConfig.load(data_config_file, load_observers=True, extra_selection=extra_selection)
         else:
             self._data_config = DataConfig.load(
                 data_config_file, load_reweight_info=False, extra_test_selection=extra_selection)
